@@ -1,0 +1,142 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:AcademicPerformanceMonitoring.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="1000" d:DesignHeight="600"
+		
+		Width="1000" Height="600"
+        x:Class="AcademicPerformanceMonitoring.Views.MainWindow"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="AcademicPerformanceMonitoring">
+
+    <Design.DataContext>
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+	<Window.Styles>
+		<Style Selector="Button.b1">
+			<Setter Property="VerticalAlignment" Value="Stretch"/>
+			<Setter Property="HorizontalAlignment" Value="Stretch"/>
+			<Setter Property="VerticalContentAlignment" Value="Center"/>
+			<Setter Property="HorizontalContentAlignment" Value="Center"/>
+			<Setter Property="CornerRadius" Value="0"/>
+			<Setter Property="FontSize" Value="20"/>
+			<Setter Property="FontFamily" Value="Comic Sans MS"/>
+			<Setter Property="Background" Value="BlueViolet"/>
+			<Setter Property="Width" Value="500" />
+			<Setter Property="Height" Value="45" />
+		</Style>
+		<Style Selector="TextBlock.TextWords">
+			<Setter Property="FontFamily" Value="Comic Sans MS"/>
+			<Setter Property="FontSize" Value="17"/>
+			<Setter Property="HorizontalAlignment" Value="Center"/>
+			<Setter Property="VerticalAlignment" Value="Center"/>
+			<Setter Property="TextAlignment" Value="Center"/>
+		</Style>
+		<Style Selector="ComboBox.Combo1">
+			<Setter Property="Width" Value="160" />
+			<Setter Property="Height" Value="45" />
+			<Setter Property="BorderThickness" Value="2"/>
+			<Setter Property="BorderBrush" Value="Black"/>
+		</Style>
+	</Window.Styles>
+	<Grid RowDefinitions="50, 4*, 50, 0.5*, 0.5*, 0.5*">
+		<Border Grid.Row="0" BorderThickness="2" BorderBrush="Yellow"/>
+		<Grid Grid.Row="0" ColumnDefinitions="*, *, *, *, *, *">
+			<Border Grid.Row="0" Grid.Column="0" BorderThickness="2" BorderBrush="Yellow"/>
+			<TextBlock Grid.Column="0" Text="FIO" Classes="TextWords"/>
+			<Border Grid.Row="0" Grid.Column="1" BorderThickness="2" BorderBrush="Yellow"/>
+			<TextBlock Grid.Column="1" Text="Math" Classes="TextWords"/>
+			<Border Grid.Row="0" Grid.Column="2" BorderThickness="2" BorderBrush="Yellow"/>
+			<TextBlock Grid.Column="2" Text="OOP" Classes="TextWords"/>
+			<Border Grid.Row="0" Grid.Column="3" BorderThickness="2" BorderBrush="Yellow"/>
+			<TextBlock Grid.Column="3" Text="SAOD" Classes="TextWords"/>
+			<Border Grid.Row="0" Grid.Column="4" BorderThickness="2" BorderBrush="Yellow"/>
+			<TextBlock Grid.Column="4" Text="Visual Programming" Classes="TextWords"/>
+			<Border Grid.Row="0" Grid.Column="5" BorderThickness="2" BorderBrush="Yellow"/>
+			<TextBlock Grid.Column="5" Text="Middle&#x0a;value" Classes="TextWords"/>
+		</Grid>
+		<ListBox Grid.Row="1" Items="{Binding Students}" Background="White" BorderThickness="2" BorderBrush="Yellow">
+			<ListBox.ItemTemplate>
+				<DataTemplate>
+					<Grid ColumnDefinitions="*, *, *, *, *, *">
+						<Border Grid.Row="1" Grid.Column="0" BorderThickness="2" BorderBrush="Yellow"/>
+						<TextBlock Name="TextBlockO" Grid.Column="0" Text="{Binding fio}"/>
+						<Rectangle Grid.Column="1" Fill="{Binding GetMathemColor}" StrokeThickness="2" Stroke="Yellow"/>
+						<ComboBox Grid.Column="1" SelectedIndex="{Binding PmarkMathem}" Classes="Yellow">
+							<ComboBoxItem> 0</ComboBoxItem>
+							<ComboBoxItem> 1</ComboBoxItem>
+							<ComboBoxItem> 2</ComboBoxItem>
+						</ComboBox>
+						<Rectangle Grid.Column="2" Fill="{Binding GetOOPColor}" StrokeThickness="2" Stroke="Yellow"/>
+						<ComboBox Grid.Column="2" SelectedIndex="{Binding PmarkOOP}" Classes="Yellow" >
+							<ComboBoxItem> 0</ComboBoxItem>
+							<ComboBoxItem> 1</ComboBoxItem>
+							<ComboBoxItem> 2</ComboBoxItem>
+						</ComboBox>
+						<Rectangle Grid.Column="3" Fill="{Binding GetSIAODColor}" StrokeThickness="2" Stroke="Yellow"/>
+						<ComboBox Grid.Column="3" SelectedIndex="{Binding PmarkSIAOD}" Classes="Combo1">
+							<ComboBoxItem> 0</ComboBoxItem>
+							<ComboBoxItem> 1</ComboBoxItem>
+							<ComboBoxItem> 2</ComboBoxItem>
+						</ComboBox>
+						<Rectangle Grid.Column="4" Fill="{Binding GetPhysicsColor}" StrokeThickness="2" Stroke="Cyan"/>
+						<ComboBox Grid.Column="4" SelectedIndex="{Binding PmarkPhysics}" Classes="Combo1">
+							<ComboBoxItem> 0</ComboBoxItem>
+							<ComboBoxItem> 1</ComboBoxItem>
+							<ComboBoxItem> 2</ComboBoxItem>
+						</ComboBox>
+						<Rectangle Grid.Column="5" Fill="{Binding GetAverageColor}" StrokeThickness="2" Stroke="Cyan"/>
+						<TextBlock Grid.Column="5" Text="{Binding GetAverage}" Classes="TextWords"></TextBlock>
+					</Grid>
+				</DataTemplate>
+			</ListBox.ItemTemplate>
+		</ListBox>
+		<Grid Grid.Row="2" ColumnDefinitions="*, *, *, *, *, *">
+			<Border Grid.Row="2" Grid.Column="0" BorderThickness="2" BorderBrush="Cyan"/>
+			<TextBlock Grid.Column="0" Text="Middle value&#x0a;of subject" Classes="TextWords"/>
+			<Rectangle Grid.Column="1" Fill="{Binding GetAverageColorMathem}" StrokeThickness="2" Stroke="Cyan"/>
+			<TextBlock Grid.Column="1" Text="{Binding GetAverageMathem}" Classes="TextWords"/>
+			<Rectangle Grid.Column="2" Fill="{Binding GetAverageColorOOP}" StrokeThickness="2" Stroke="Cyan"/>
+			<TextBlock Grid.Column="2" Text="{Binding GetAverageOOP}" Classes="TextWords"/>
+			<Rectangle Grid.Column="3" Fill="{Binding GetAverageColorSIAOD}" StrokeThickness="2" Stroke="Cyan"/>
+			<TextBlock Grid.Column="3" Text="{Binding GetAverageSIAOD}" Classes="TextWords"/>
+			<Rectangle Grid.Column="4" Fill="{Binding GetAverageColorPhysics}" StrokeThickness="2" Stroke="Cyan"/>
+			<TextBlock Grid.Column="4" Text="{Binding GetAveragePhysics}" Classes="TextWords"/>
+			<Rectangle Grid.Column="5" Fill="{Binding GetAverageColorI}" StrokeThickness="2" Stroke="Cyan"/>
+			<TextBlock Grid.Column="5" Text="{Binding GetQ}" Classes="TextWords"/>
+		</Grid>
+		<Grid Grid.Row="3" ColumnDefinitions="*, *, *, *, *, *">
+			<TextBox Name="TextBoxInput" Grid.Column="0" Text="{Binding GetName}" TextAlignment="Center" BorderThickness="2" BorderBrush="Black"/>
+			<ComboBox Grid.Column="1" SelectedIndex="{Binding GetMarkMathem}" Classes="Combo1">
+				<ComboBoxItem> 0</ComboBoxItem>
+				<ComboBoxItem> 1</ComboBoxItem>
+				<ComboBoxItem> 2</ComboBoxItem>
+			</ComboBox>
+			<ComboBox Grid.Column="2" SelectedIndex="{Binding GetMarkOOP}" Classes="Combo1">
+				<ComboBoxItem> 0</ComboBoxItem>
+				<ComboBoxItem> 1</ComboBoxItem>
+				<ComboBoxItem> 2</ComboBoxItem>
+			</ComboBox>
+			<ComboBox Grid.Column="3" SelectedIndex="{Binding GetMarkSIAOD}" Classes="Combo1">
+				<ComboBoxItem> 0</ComboBoxItem>
+				<ComboBoxItem> 1</ComboBoxItem>
+				<ComboBoxItem> 2</ComboBoxItem>
+			</ComboBox>
+			<ComboBox Grid.Column="4" SelectedIndex="{Binding GetMarkPhysics}" Classes="Combo1">
+				<ComboBoxItem> 0</ComboBoxItem>
+				<ComboBoxItem> 1</ComboBoxItem>
+				<ComboBoxItem> 2</ComboBoxItem>
+			</ComboBox>
+		</Grid>
+		<Grid  Grid.Row="4" ColumnDefinitions="*, *">
+			<Button Name="AddButton" Grid.Column="0" Classes="b1" Content="Add" Command="{Binding AddStudent}"/>
+			<Button Name="DeleteButton" Grid.Column="1" Classes="b1" Content="Delete" Command="{Binding DeleteStudent}"/>
+		</Grid>
+		<Grid  Grid.Row="5" ColumnDefinitions="*, *">
+			<Button Name="SaveButton" Grid.Column="0" Classes="b1" Content="Save" Command="{Binding SaveStudents}" />
+			<Button Name="LoadButton" Grid.Column="1" Classes="b1" Content="Load" Command="{Binding LoadStudents}" />
+		</Grid>
+
+	</Grid>
+</Window>
